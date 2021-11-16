@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\Вадим\Documents\GitHub\CourseProjectAsm\CourseProjectAsm\CourseProjectAsm\Source.cpp(17,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Вадим\Documents\GitHub\CourseProjectAsm\CourseProjectAsm\CourseProjectAsm\Source.cpp(23,6): warning C4101: dump: неиспользованная локальная переменная
+  CourseProjectAsm.vcxproj -> C:\Users\Вадим\Documents\GitHub\CourseProjectAsm\CourseProjectAsm\Debug\CourseProjectAsm.exe
