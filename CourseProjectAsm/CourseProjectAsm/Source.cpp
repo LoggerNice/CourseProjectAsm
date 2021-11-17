@@ -18,11 +18,11 @@ int main()
 	const int N = 5;
 	int firstArray[N];
 	int secondArray[N];
-	int thirdArray[N];
+	int thirdArray[N] = {0};
 	int inputNum;
-	int dump;
-	unsigned short countNull = 0;
-	unsigned short countOne = 0;
+	int dump = 0;
+	int countOne = 0;
+	int countNull = 0;
 
 	printf("Введите число: ");
 	scanf("%i", &inputNum);
@@ -33,65 +33,47 @@ int main()
 		secondArray[i] = 1 + rand() % 10;
 	}
 
-	//eax, ebx, edx, ecx, al, ah
 
 	_asm 
 	{
-		mov ax, 0								; Итератор
-		mov bx, 0								; Счётчик нулей
+		mov ecx, 0								; Счётчик
 		mov ebx, inputNum						; Пользовательская переменная
-		lea eax, firstArray						; Первый массив
+		lea esi, thirdArray						; Третий массив
+		lea edi, firstArray						; Первый массив
 		lea edx, secondArray					; Второй массив
-
-		loopFor_:
-			xor ecx, ecx						; Переменная для суммы чисел
-			add ecx, eax
-			add ecx, edx
-
-			cmp ecx, ebx						; Сравнение чисел
-			jge isMore_							; Если больше
-			jmp isSmall_						; Если меньше
-
-		isSmall_:
-			lea ecx, thirdArray
-			mov ecx, 1
-			jmp next_
-
-		isMore_:
-			lea ecx, thirdArray
-			mov ecx, 0
-			inc bx
-			jmp next_
+		jmp loopFor_
 		
 		next_:
-			cmp ax, 5
-			je exit_
+			inc ecx
+			cmp ecx, N
+			jg exit_
+			jmp loopFor_
 
-			inc ax
-			jne loopFor_
+		loopFor_:
+			xor eax, eax						; Освобождение eax
+			add eax, [edi + ecx * 4]			; Сумма элемента первого массива
+			add eax, [edx + ecx * 4]			; Сумма элемента первого массива
+
+			cmp eax, ebx						; Сравнение чисел
+			jg isMore_							; Если больше
+			jmp isSmall_						; Если меньше
+
+		isMore_:
+			mov [esi + ecx * 4], 1
+			add countOne, 1
+			jmp next_
+
+		isSmall_:
+			mov [esi + ecx * 4], 0
+			jmp next_
+		
 
 		exit_:
-			mov thirdArray, ecx
-			mov countNull, bx
-			mov ax, 5							; Для рассчитывания единичек
-			sub ax, bx							; Вычитание
-			mov countOne, ax
+			xor eax, eax
+			mov eax, N
+			sub eax, countOne
+			mov countNull, eax
 	}
-	 
-
-	/*for (int i = 0; i < N; i++) 
-	{
-		dump = firstArray[i] + secondArray[i];
-		if (dump > inputNum) 
-		{
-			thirdArray[i] = 1;
-		}
-		else 
-		{
-			thirdArray[i] = 0;
-			countNull++;
-		}
-	}*/
 
 
 	printf("\nПервый массив: ");
@@ -101,7 +83,7 @@ int main()
 	printf("Итоговый массив: ");
 	write(thirdArray, N);
 
-	printf("Всего нулей: %i и единиц: %i\n\n", countNull, 5 - countNull);
+	printf("Всего единиц: %i и нулей: %i\n\n", countOne, countNull);
 
 	system("pause");
 	return 0;
