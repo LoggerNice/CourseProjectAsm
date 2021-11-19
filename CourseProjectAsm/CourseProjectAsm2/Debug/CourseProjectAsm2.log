@@ -1,3 +1,6 @@
 ﻿  Two.cpp
-C:\Users\Vadim\Documents\Site\CourseProjectAsm\CourseProjectAsm\CourseProjectAsm2\Two.cpp(52): warning C4172: возвращение адреса локальной или временной переменной : sens
+C:\Users\Vadim\Documents\Site\CourseProjectAsm\CourseProjectAsm\CourseProjectAsm2\Two.cpp(10,3): warning C4102: Quality_: неиспользованная метка
+C:\Users\Vadim\Documents\Site\CourseProjectAsm\CourseProjectAsm\CourseProjectAsm2\Two.cpp(74,3): warning C4102: Frequency_: неиспользованная метка
+C:\Users\Vadim\Documents\Site\CourseProjectAsm\CourseProjectAsm\CourseProjectAsm2\Two.cpp(129,3): warning C4102: Connection_: неиспользованная метка
+C:\Users\Vadim\Documents\Site\CourseProjectAsm\CourseProjectAsm\CourseProjectAsm2\Two.cpp(206): warning C4172: возвращение адреса локальной или временной переменной : sens
   CourseProjectAsm2.vcxproj -> C:\Users\Vadim\Documents\Site\CourseProjectAsm\CourseProjectAsm\Debug\CourseProjectAsm2.exe
